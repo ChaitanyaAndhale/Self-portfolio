@@ -6,8 +6,9 @@ const navItems = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Skills', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
+  { name: 'Education', href: '#education' },
   { name: 'Experience', href: '#experience' },
+  { name: 'Projects', href: '#projects' },
   { name: 'Contact', href: '#contact' },
 ];
 
@@ -15,20 +16,13 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-      
-      // Calculate scroll progress
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      setScrollProgress(scrolled);
 
       // Detect active section
-      const sections = navItems.map(item => item.href.slice(1));
+      const sections = ['home', 'about', 'skills', 'education', 'experience', 'projects', 'contact'];
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
         if (element) {
@@ -55,26 +49,19 @@ export const Navbar = () => {
 
   return (
     <>
-      {/* Scroll Progress Bar */}
-      <motion.div 
-        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary z-[60]"
-        style={{ width: `${scrollProgress}%` }}
-      />
-
       <motion.header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? 'py-3' : 'py-6'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-background/80 backdrop-blur-md border-b border-border' : 'bg-transparent'
+          }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <div className={`mx-auto max-w-7xl px-6 ${isScrolled ? 'glass rounded-full mx-4 py-3 shadow-lg' : ''}`}>
-          <nav className="flex items-center justify-between">
+        <div className="mx-auto max-w-7xl px-6 md:px-12">
+          <nav className="flex items-center justify-between h-20">
             {/* Logo */}
             <motion.a
               href="#home"
-              className="text-2xl font-display font-bold gradient-text"
+              className="text-xl md:text-2xl font-display font-medium text-foreground"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={(e) => {
@@ -82,20 +69,25 @@ export const Navbar = () => {
                 scrollToSection('#home');
               }}
             >
-              CA
+              <motion.span
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                Chaitanya Andhale
+              </motion.span>
             </motion.a>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-1">
+            <div className="hidden md:flex items-center gap-8">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className={`relative px-4 py-2 text-sm font-medium transition-colors ${
-                    activeSection === item.href.slice(1) 
-                      ? 'text-primary' 
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
+                  className={`relative text-sm font-medium transition-colors link-underline ${activeSection === item.href.slice(1)
+                    ? 'text-foreground'
+                    : 'text-muted-foreground hover:text-foreground'
+                    }`}
                   onClick={(e) => {
                     e.preventDefault();
                     scrollToSection(item.href);
@@ -108,8 +100,8 @@ export const Navbar = () => {
                   {item.name}
                   {activeSection === item.href.slice(1) && (
                     <motion.div
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full"
-                      layoutId="activeSection"
+                      className="absolute -bottom-1 left-0 right-0 h-px bg-foreground"
+                      layoutId="activeIndicator"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -117,30 +109,19 @@ export const Navbar = () => {
               ))}
             </div>
 
-            {/* CTA Button */}
-            <motion.a
-              href="#contact"
-              className="hidden md:flex px-6 py-2.5 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground font-medium text-sm transition-all hover:shadow-lg hover:shadow-primary/25"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('#contact');
-              }}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
-            >
-              Let's Talk
-            </motion.a>
-
             {/* Mobile Menu Button */}
             <motion.button
-              className="md:hidden p-2 glass rounded-xl"
+              className="md:hidden p-2 text-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.1 }}
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              <motion.div
+                animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              </motion.div>
             </motion.button>
           </nav>
         </div>
@@ -149,7 +130,7 @@ export const Navbar = () => {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              className="md:hidden fixed inset-0 top-20 glass z-40"
+              className="md:hidden fixed inset-0 top-20 bg-background/95 backdrop-blur-md z-40"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -160,18 +141,20 @@ export const Navbar = () => {
                   <motion.a
                     key={item.name}
                     href={item.href}
-                    className={`text-2xl font-display font-medium ${
-                      activeSection === item.href.slice(1) 
-                        ? 'gradient-text' 
-                        : 'text-muted-foreground'
-                    }`}
+                    className={`text-3xl font-display font-medium ${activeSection === item.href.slice(1)
+                      ? 'text-foreground'
+                      : 'text-muted-foreground'
+                      }`}
                     onClick={(e) => {
                       e.preventDefault();
                       scrollToSection(item.href);
                     }}
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -30 }}
                     transition={{ delay: index * 0.1 }}
+                    whileHover={{ x: 10, scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     {item.name}
                   </motion.a>

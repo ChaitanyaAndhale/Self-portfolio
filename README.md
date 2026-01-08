@@ -1,73 +1,121 @@
-# Welcome to your Lovable project
+# Chaitanya Andhale - Portfolio
 
-## Project info
+A modern, responsive portfolio website showcasing my skills, projects, and experience as a Full-stack Developer and UI/UX Designer.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Features
 
-## How can I edit this code?
+- **Responsive Design**: Fully responsive across all devices
+- **Modern UI**: Clean, minimalist design with smooth animations
+- **Interactive Sections**: Hero, About, Skills, Education, Experience, Projects, and Contact
+- **Contact Form**: Functional contact form for inquiries
+- **Professional Showcase**: Highlighting real projects and achievements
 
-There are several ways of editing your application.
+## 🛠️ Tech Stack
 
-**Use Lovable**
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Animations**: Framer Motion
+- **Build Tool**: Vite
+- **Styling**: Custom CSS with Tailwind utilities
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 📂 Project Structure
 
-Changes made via Lovable will be committed automatically to this repo.
+```
+aurora-portfolio/
+├── src/
+│   ├── components/
+│   │   ├── layout/
+│   │   │   └── Navbar.tsx
+│   │   ├── sections/
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── AboutSection.tsx
+│   │   │   ├── SkillsSection.tsx
+│   │   │   ├── EducationSection.tsx
+│   │   │   ├── ExperienceSection.tsx
+│   │   │   ├── ProjectsSection.tsx
+│   │   │   ├── ContactSection.tsx
+│   │   │   └── Footer.tsx
+│   │   └── ui/
+│   │       └── AnimatedBackground.tsx
+│   ├── pages/
+│   │   └── Index.tsx
+│   └── index.css
+├── public/
+│   ├── profile-photo-full.jpg
+│   └── project images
+└── package.json
+```
 
-**Use your preferred IDE**
+## 🎨 Sections
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+1. **Hero**: Introduction with professional photo
+2. **About**: Services and expertise
+3. **Skills**: Technical skills categorized by type
+4. **Education**: Academic qualifications and achievements
+5. **Experience**: Work experience and training
+6. **Projects**: Featured projects with descriptions
+7. **Contact**: Contact form and information
+8. **Footer**: Links, socials, and additional info
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 💻 Local Development
 
-Follow these steps:
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. Clone the repository:
+```bash
+git clone https://github.com/ChaitanyaAndhale/aurora-portfolio.git
+cd aurora-portfolio
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and visit:
+```
+http://localhost:5173
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build for Production
 
-**Use GitHub Codespaces**
+```bash
+npm run build
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The built files will be in the `dist` directory.
 
-## What technologies are used for this project?
+### Preview Production Build
 
-This project is built with:
+```bash
+npm run preview
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📧 Contact
 
-## How can I deploy this project?
+- **Email**: chaitanyaandhale6@gmail.com
+- **Phone**: +91 92095 91382
+- **LinkedIn**: [linkedin.com/in/chaitanya-andhale](https://linkedin.com/in/chaitanya-andhale)
+- **GitHub**: [github.com/ChaitanyaAndhale](https://github.com/ChaitanyaAndhale)
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## 📄 License
 
-## Can I connect a custom domain to my Lovable project?
+This project is open source and available under the MIT License.
 
-Yes, you can!
+## 🙏 Acknowledgments
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- Design inspiration from modern portfolio websites
+- Icons from Lucide React
+- Fonts from Google Fonts (Space Grotesk, Inter)
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+
+**© 2025 Chaitanya Andhale. All rights reserved.**
