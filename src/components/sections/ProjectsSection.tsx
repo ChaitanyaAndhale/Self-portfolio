@@ -1,6 +1,9 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { ExternalLink, Github, Code2, Cpu, ShoppingCart, Car } from 'lucide-react';
+import tomatoProject from '@/assets/tomato-project.jpg';
+import ecommerceProject from '@/assets/ecommerce-project.jpg';
+import carRentalProject from '@/assets/car-rental-project.jpg';
 
 const projects = [
   {
@@ -10,8 +13,9 @@ const projects = [
     description: 'CNN-based tomato leaf disease detection system using a dataset of 32,000+ images to accurately classify multiple tomato crop diseases. Includes crop recovery and pesticide recommendation module.',
     technologies: ['Python', 'TensorFlow', 'CNN', 'Matplotlib'],
     icon: Cpu,
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-emerald-500 to-cyan-500',
     category: 'Machine Learning',
+    image: tomatoProject,
   },
   {
     id: 2,
@@ -22,6 +26,7 @@ const projects = [
     icon: ShoppingCart,
     color: 'from-primary to-secondary',
     category: 'Full Stack',
+    image: ecommerceProject,
   },
   {
     id: 3,
@@ -30,8 +35,9 @@ const projects = [
     description: 'Comprehensive car rental management system with booking, return, and rental management features. Implements multiple pricing strategies using OOP principles and polymorphism.',
     technologies: ['Java', 'OOP', 'Collection Framework'],
     icon: Car,
-    color: 'from-accent to-pink-glow',
+    color: 'from-violet-500 to-fuchsia-500',
     category: 'Backend',
+    image: carRentalProject,
   },
 ];
 
@@ -110,35 +116,28 @@ export const ProjectsSection = () => {
                 whileHover={{ y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                {/* Gradient Header */}
-                <div className={`h-32 bg-gradient-to-br ${project.color} relative overflow-hidden`}>
-                  {/* Animated pattern */}
-                  <div className="absolute inset-0 opacity-20">
-                    <motion.div
-                      className="absolute inset-0"
-                      style={{
-                        backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                        backgroundSize: '20px 20px',
-                      }}
-                      animate={{ 
-                        backgroundPosition: ['0px 0px', '20px 20px'],
-                      }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    />
-                  </div>
+                {/* Project Image */}
+                <div className="h-48 relative overflow-hidden">
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  {/* Overlay gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-40`} />
                   
                   {/* Icon */}
                   <motion.div
-                    className="absolute bottom-4 right-4 p-3 bg-white/20 backdrop-blur-sm rounded-xl"
+                    className="absolute bottom-4 right-4 p-3 bg-background/80 backdrop-blur-sm rounded-xl border border-primary/30"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
-                    <project.icon className="w-6 h-6 text-white" />
+                    <project.icon className="w-6 h-6 text-primary" />
                   </motion.div>
 
                   {/* Category Badge */}
                   <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-white">
+                    <span className="px-3 py-1 bg-primary/20 backdrop-blur-sm rounded-full text-xs font-medium text-primary border border-primary/30">
                       {project.category}
                     </span>
                   </div>
@@ -146,7 +145,7 @@ export const ProjectsSection = () => {
 
                 {/* Content */}
                 <div className="p-6">
-                  <h3 className="text-xl font-display font-bold mb-1">{project.title}</h3>
+                  <h3 className="text-xl font-display font-bold mb-1 text-foreground">{project.title}</h3>
                   <p className="text-sm text-muted-foreground mb-4">{project.subtitle}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed mb-6">
                     {project.description}
@@ -157,7 +156,7 @@ export const ProjectsSection = () => {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
+                        className="px-3 py-1 bg-primary/10 text-primary border border-primary/20 rounded-full text-xs font-medium"
                       >
                         {tech}
                       </span>
@@ -167,7 +166,7 @@ export const ProjectsSection = () => {
                   {/* Actions */}
                   <div className="flex gap-3">
                     <motion.button
-                      className="flex-1 py-2 px-4 glass rounded-xl text-sm font-medium flex items-center justify-center gap-2 hover:bg-primary/10 transition-colors"
+                      className="flex-1 py-2 px-4 glass rounded-xl text-sm font-medium flex items-center justify-center gap-2 hover:bg-primary/10 hover:border-primary/50 transition-colors"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -178,14 +177,14 @@ export const ProjectsSection = () => {
                       href="https://github.com/ChaitanyaAndhale"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 glass rounded-xl hover:bg-primary/10 transition-colors"
+                      className="p-2 glass rounded-xl hover:bg-primary/10 hover:border-primary/50 transition-colors"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
                       <Github size={18} />
                     </motion.a>
                     <motion.button
-                      className="p-2 glass rounded-xl hover:bg-primary/10 transition-colors"
+                      className="p-2 glass rounded-xl hover:bg-primary/10 hover:border-primary/50 transition-colors"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
@@ -201,7 +200,7 @@ export const ProjectsSection = () => {
                   whileHover={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                   style={{
-                    boxShadow: `0 0 40px hsl(var(--primary) / 0.2), 0 0 80px hsl(var(--secondary) / 0.1)`,
+                    boxShadow: `0 0 40px hsl(var(--primary) / 0.3), 0 0 80px hsl(var(--primary) / 0.1)`,
                   }}
                 />
               </motion.div>
@@ -220,7 +219,7 @@ export const ProjectsSection = () => {
             href="https://github.com/ChaitanyaAndhale"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 glass rounded-full font-medium hover:bg-primary/10 transition-colors"
+            className="inline-flex items-center gap-2 px-8 py-4 glass rounded-full font-medium hover:bg-primary/10 hover:border-primary/50 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

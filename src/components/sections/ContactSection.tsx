@@ -115,33 +115,18 @@ export const ContactSection = () => {
 
                 <motion.button
                   type="submit"
-                  className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold text-lg flex items-center justify-center gap-2 relative overflow-hidden group"
+                  className="w-full py-4 rounded-xl bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold text-lg relative overflow-hidden group"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   disabled={isSubmitted}
                 >
-                  {isSubmitted ? (
-                    <motion.span
-                      className="flex items-center gap-2"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                    >
-                      <CheckCircle size={20} />
-                      Message Sent!
-                    </motion.span>
-                  ) : (
-                    <>
-                      <Send size={20} />
-                      Send Message
-                    </>
-                  )}
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-secondary to-primary"
                     initial={{ x: '100%' }}
                     whileHover={{ x: 0 }}
                     transition={{ duration: 0.3 }}
                   />
-                  <span className="relative z-10 flex items-center gap-2">
+                  <span className="relative z-10 flex items-center justify-center gap-2">
                     {isSubmitted ? (
                       <>
                         <CheckCircle size={20} />

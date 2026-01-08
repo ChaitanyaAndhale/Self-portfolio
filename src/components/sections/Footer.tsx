@@ -77,7 +77,7 @@ export const Footer = () => {
 
         <div className="mt-8 pt-8 border-t border-border/30 text-center">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Chaitanya Andhale. All rights reserved.
+            © 2025 Chaitanya Andhale. All rights reserved.
           </p>
         </div>
       </div>
