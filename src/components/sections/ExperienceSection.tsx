@@ -4,7 +4,7 @@ import { Briefcase, Award, FileText, BookOpen } from 'lucide-react';
 
 const experience = [
   {
-    title: 'Software Engineer (Trainee)',
+    title: 'Software Engineer',
     company: 'Qspider Training Institute',
     period: '2024',
     description: [
