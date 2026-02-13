@@ -9,7 +9,7 @@ const projects = [
     description: 'CNN-based disease detection system using 32,000+ images with crop recovery and pesticide recommendations',
     image: '/project2.png',
     tags: ['Python', 'TensorFlow', 'CNN', 'Matplotlib'],
-    github: 'https://github.com/ChaitanyaAndhale',
+    github: 'https://github.com/ChaitanyaAndhale/Tomato-Crop-Doctor',
     live: '#',
   },
   {
@@ -17,7 +17,7 @@ const projects = [
     description: 'Responsive e-commerce platform with dynamic shopping cart and seamless navigation',
     image: '/project1.png',
     tags: ['React.js', 'React Router', 'HTML5', 'CSS3', 'JavaScript'],
-    github: 'https://github.com/ChaitanyaAndhale',
+    github: 'https://github.com/ChaitanyaAndhale/Ecommerce-Website',
     live: '#',
   },
   {
@@ -25,7 +25,7 @@ const projects = [
     description: 'OOP-based rental management system with booking, return, and pricing strategies',
     image: '/project3.png',
     tags: ['Java', 'OOP', 'Collection Framework'],
-    github: 'https://github.com/ChaitanyaAndhale',
+    github: 'https://github.com/ChaitanyaAndhale/Car-rental-system',
     live: '#',
   },
   {
@@ -35,6 +35,14 @@ const projects = [
     tags: ['Java', 'Spring Boot', 'React', 'Hibernate', 'SQL Server'],
     github: 'https://github.com/ChaitanyaAndhale',
     live: '#',
+  },
+  {
+    title: 'Grampanchayat Website',
+    description: 'Official digital platform for Golegaon village with admin dashboard, bilingual support, and real-time statistics.',
+    image: '/grampanchayat.png',
+    tags: ['React', 'Supabase', 'TypeScript', 'Tailwind CSS'],
+    github: 'https://github.com/ChaitanyaAndhale/grampanchayt_proj.git',
+    live: 'https://aplegolegaon.in',
   },
 ];
 
