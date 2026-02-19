@@ -1,34 +1,48 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { Code, Database, Wrench, Layers } from 'lucide-react';
 
 const skillCategories = [
   {
-    title: 'Programming Languages',
-    icon: Code,
-    skills: ['Java', 'JavaScript', 'SQL', 'HTML', 'CSS', 'Python'],
+    emoji: '👨‍💻',
+    title: 'Languages',
+    gradient: 'from-sky-500/10 via-cyan-500/5 to-transparent',
+    border: 'hover:border-sky-500/40',
+    skills: ['Java', 'JavaScript', 'TypeScript', 'HTML', 'CSS', 'Python'],
   },
   {
+    emoji: '⚙️',
+    title: 'Backend & Architecture',
+    gradient: 'from-emerald-500/10 via-green-500/5 to-transparent',
+    border: 'hover:border-emerald-500/40',
+    skills: ['Spring Boot', 'Node.js', 'Express', 'NestJS'],
+  },
+  {
+    emoji: '🎨',
+    title: 'Frontend & Mobile',
+    gradient: 'from-violet-500/10 via-purple-500/5 to-transparent',
+    border: 'hover:border-violet-500/40',
+    skills: ['React', 'Next.js', 'Redux', 'Bootstrap', 'Tailwind CSS', 'Android', 'Kotlin'],
+  },
+  {
+    emoji: '🗄️',
     title: 'Databases',
-    icon: Database,
-    skills: ['MySQL', 'MongoDB', 'SQL Server'],
+    gradient: 'from-amber-500/10 via-yellow-500/5 to-transparent',
+    border: 'hover:border-amber-500/40',
+    skills: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis'],
   },
   {
-    title: 'Frameworks & Libraries',
-    icon: Layers,
-    skills: ['React', 'Node.js', 'Spring Boot', 'Flask', 'Hibernate', 'TensorFlow', 'Mongoose'],
-  },
-  {
-    title: 'Tools & Technologies',
-    icon: Wrench,
-    skills: ['Git', 'GitHub', 'VS Code', 'Eclipse IDE', 'JDBC', 'REST APIs', 'MVC Architecture'],
+    emoji: '🧰',
+    title: 'Tools & DevOps',
+    gradient: 'from-rose-500/10 via-red-500/5 to-transparent',
+    border: 'hover:border-rose-500/40',
+    skills: ['Git', 'GitHub', 'Docker', 'Postman', 'VS Code', 'Android Studio', 'IntelliJ IDEA'],
   },
 ];
 
 export const SkillsSection = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
 
   return (
     <section id="skills" className="py-20 md:py-32 relative" ref={ref}>
@@ -41,7 +55,7 @@ export const SkillsSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-medium mb-4">
-            Technical Skills
+            Tech Stack
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
             Technologies and tools I work with to build modern, scalable applications.
@@ -49,37 +63,43 @@ export const SkillsSection = () => {
         </motion.div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              className="space-y-4"
+              className={`relative p-6 rounded-2xl border border-border bg-gradient-to-br ${category.gradient} ${category.border} transition-all duration-300 group overflow-hidden`}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + index * 0.1, duration: 0.6 }}
+              whileHover={{ y: -6, transition: { duration: 0.25 } }}
             >
-              <div className="flex items-center gap-3 mb-4">
-                <motion.div
-                  className="p-2 rounded-lg bg-muted"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
+              {/* inner glow on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.04),_transparent_70%)]" />
+
+              {/* Category header */}
+              <div className="flex items-center gap-3 mb-5">
+                <motion.span
+                  className="text-2xl select-none"
+                  whileHover={{ scale: 1.2, rotate: 8 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <category.icon className="w-5 h-5 text-foreground" />
-                </motion.div>
-                <h3 className="text-xl md:text-2xl font-display font-medium">
+                  {category.emoji}
+                </motion.span>
+                <h3 className="text-lg md:text-xl font-display font-semibold">
                   {category.title}
                 </h3>
               </div>
 
+              {/* Skill chips */}
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.span
                     key={skill}
-                    className="px-4 py-2 bg-muted rounded-lg text-sm font-medium hover:bg-foreground/10 transition-colors cursor-default"
-                    initial={{ opacity: 0, scale: 0.8 }}
+                    className="px-3 py-1.5 bg-background/50 backdrop-blur-sm border border-border/60 rounded-lg text-sm font-medium hover:bg-foreground/10 hover:border-foreground/40 transition-all cursor-default"
+                    initial={{ opacity: 0, scale: 0.85 }}
                     animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                    transition={{ delay: 0.2 + index * 0.1 + skillIndex * 0.05 }}
-                    whileHover={{ scale: 1.05, y: -2 }}
+                    transition={{ delay: 0.2 + index * 0.1 + skillIndex * 0.04 }}
+                    whileHover={{ scale: 1.08, y: -2 }}
                   >
                     {skill}
                   </motion.span>

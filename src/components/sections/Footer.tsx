@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Github, Linkedin, Mail, Instagram } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const links = [
@@ -13,6 +13,7 @@ const socials = [
   { name: 'Email', href: 'mailto:chaitanyaandhale6@gmail.com', icon: Mail },
   { name: 'LinkedIn', href: 'https://linkedin.com/in/chaitanya-andhale', icon: Linkedin },
   { name: 'GitHub', href: 'https://github.com/ChaitanyaAndhale', icon: Github },
+  { name: 'Instagram', href: 'https://instagram.com/chaitanya.sa007', icon: Instagram },
 ];
 
 export const Footer = () => {
@@ -172,9 +173,31 @@ export const Footer = () => {
           </div>
         </motion.div>
 
+        {/* Quote */}
+        <motion.div
+          className="mt-12 border-t border-border pt-10 mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+        >
+          <blockquote>
+            <motion.p
+              className="text-xl md:text-2xl font-display font-medium italic text-muted-foreground leading-relaxed max-w-2xl"
+              whileHover={{ x: 6 }}
+              transition={{ duration: 0.3 }}
+            >
+              &ldquo;Software is a great combination between artistry and engineering.&rdquo;
+            </motion.p>
+            <footer className="mt-3 text-sm text-muted-foreground/60">
+              — Bill Gates
+            </footer>
+          </blockquote>
+        </motion.div>
+
         {/* Name */}
         <motion.div
-          className="mt-12"
+          className="mt-4"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
