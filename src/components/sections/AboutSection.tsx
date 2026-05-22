@@ -29,11 +29,6 @@ const services = [
   },
 ];
 
-const highlights = [
-  { value: '3+', label: 'Years Experience' },
-  { value: '20+', label: 'Projects Completed' },
-  { value: '15+', label: 'Happy Clients' },
-];
 
 export const AboutSection = () => {
   const ref = useRef(null);
@@ -71,21 +66,6 @@ export const AboutSection = () => {
               I am a passionate <span className="text-white font-semibold">Full Stack Software Engineer</span> dedicated to crafting cinematic, high-performance digital products. With deep expertise in backend architecture and a sharp eye for premium frontend aesthetics, I bridge the gap between design and robust engineering.
             </p>
 
-            {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-white/5">
-              {highlights.map((stat, i) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.2 + (i * 0.1), duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col gap-2"
-                >
-                  <span className="text-4xl md:text-5xl font-display font-bold text-white">{stat.value}</span>
-                  <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">{stat.label}</span>
-                </motion.div>
-              ))}
-            </div>
           </motion.div>
 
           {/* Right Column: Services Grid */}
