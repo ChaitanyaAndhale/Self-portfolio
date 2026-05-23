@@ -108,6 +108,7 @@ export const ProjectsSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.1 + index * 0.1, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8, transition: { type: "spring", stiffness: 300, damping: 20 } }}
             >
               <div className="premium-card rounded-3xl p-4 h-full flex flex-col bg-white/[0.02]">
                 <div className="relative aspect-[16/10] bg-muted/30 rounded-2xl overflow-hidden mb-6">
@@ -155,16 +156,21 @@ export const ProjectsSection = () => {
 
         {/* ── Toggle Button for Other Works ─────────────────────── */}
         <div className="flex justify-center mb-12">
-          <button
+          <motion.button
             onClick={() => setShowOtherWorks(!showOtherWorks)}
-            className="group flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-sm font-medium text-white"
+            className="group flex items-center gap-3 px-6 py-3 rounded-full bg-white/5 border border-white/10 text-sm font-medium text-white"
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)", boxShadow: "0 0 20px rgba(255,255,255,0.1)" }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
           >
             <span>{showOtherWorks ? 'Hide Other Work' : 'View Other Work'}</span>
-            <ChevronDown 
-              size={16} 
-              className={`transition-transform duration-300 ${showOtherWorks ? 'rotate-180' : ''}`} 
-            />
-          </button>
+            <motion.div
+              animate={{ rotate: showOtherWorks ? 180 : 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <ChevronDown size={16} />
+            </motion.div>
+          </motion.button>
         </div>
 
         {/* ── Other Works Grid (Collapsible) ────────────────────── */}
@@ -186,7 +192,8 @@ export const ProjectsSection = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.05, duration: 0.4 }}
-                      className="premium-card p-6 rounded-2xl flex flex-col bg-white/[0.01] hover:bg-white/[0.03] transition-colors border border-white/5"
+                      whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                      className="premium-card p-6 rounded-2xl flex flex-col bg-white/[0.01] border border-white/5 cursor-pointer"
                     >
                       <div className="flex items-center justify-between mb-4">
                         <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-primary">

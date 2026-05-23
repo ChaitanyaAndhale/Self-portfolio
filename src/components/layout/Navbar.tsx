@@ -12,37 +12,26 @@ const navItems = [
   { name: 'Contact', href: '#contact' },
 ];
 
-export const Navbar = () => {
+interface NavbarProps {
+  activeSection: string;
+  setActiveSection: (section: string) => void;
+}
+
+export const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      const sections = ['home', 'about', 'skills', 'education', 'experience', 'projects', 'contact'];
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 150) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.getElementById(href.slice(1));
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleNavClick = (href: string) => {
+    setActiveSection(href.slice(1));
     setMobileMenuOpen(false);
   };
 
@@ -63,11 +52,12 @@ export const Navbar = () => {
           <motion.a
             href="#home"
             className="text-lg md:text-xl font-display font-bold text-white tracking-tight"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, textShadow: "0px 0px 8px rgba(255,255,255,0.8)" }}
             whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
             onClick={(e) => {
               e.preventDefault();
-              scrollToSection('#home');
+              handleNavClick('#home');
             }}
           >
             Chaitanya<span className="text-primary">.</span>
@@ -86,7 +76,7 @@ export const Navbar = () => {
                   }`}
                 onClick={(e) => {
                   e.preventDefault();
-                  scrollToSection(item.href);
+                  handleNavClick(item.href);
                 }}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -107,17 +97,36 @@ export const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden p-2 text-white"
+            className="md:hidden p-2 text-white relative w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            whileTap={{ scale: 0.9 }}
-            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9, transition: { type: "spring", stiffness: 400, damping: 17 } }}
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
           >
-            <motion.div
-              animate={{ rotate: mobileMenuOpen ? 90 : 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.div>
+            <AnimatePresence mode="wait" initial={false}>
+              {mobileMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute flex items-center justify-center"
+                >
+                  <X size={20} />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0, scale: 0.5 }}
+                  animate={{ rotate: 0, opacity: 1, scale: 1 }}
+                  exit={{ rotate: -90, opacity: 0, scale: 0.5 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute flex items-center justify-center"
+                >
+                  <Menu size={20} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.button>
         </div>
 
@@ -142,13 +151,13 @@ export const Navbar = () => {
                     }`}
                   onClick={(e) => {
                     e.preventDefault();
-                    scrollToSection(item.href);
+                    handleNavClick(item.href);
                   }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
-                  transition={{ delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05, color: '#fff' }}
+                  transition={{ delay: index * 0.05, type: "spring", stiffness: 300, damping: 20 }}
+                  whileHover={{ scale: 1.05, color: '#fff', x: 10 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {item.name}

@@ -45,7 +45,7 @@ export const HeroSection = () => {
           
           {/* LEFT SIDE: Image in Animated Circle with 3D Tilt */}
           <motion.div 
-            className="order-1 flex justify-center lg:justify-start relative w-full perspective-[1000px]"
+            className="order-1 flex flex-col items-center lg:items-center xl:items-start relative w-full perspective-[1000px]"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
@@ -90,7 +90,7 @@ export const HeroSection = () => {
                   <img 
                     src="/hero-profile.jpg" 
                     alt="Chaitanya" 
-                    className="w-full h-full object-contain scale-100 group-hover:scale-105 transition-transform duration-700 ease-[0.16,1,0.3,1] relative z-0"
+                    className="w-full h-full object-cover object-top scale-100 group-hover:scale-105 transition-transform duration-700 ease-[0.16,1,0.3,1] relative z-0"
                     loading="eager"
                   />
                 </div>
@@ -109,6 +109,23 @@ export const HeroSection = () => {
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 style={{ translateZ: 100 }}
               />
+            </motion.div>
+            
+            {/* Animated Name below picture */}
+            <motion.div
+              className="mt-8 md:mt-12 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <motion.h2 
+                className="text-4xl md:text-5xl lg:text-6xl font-serif italic font-medium text-transparent bg-clip-text bg-gradient-to-r from-white via-primary to-primary tracking-wide pb-2"
+                style={{ filter: 'drop-shadow(0 4px 15px rgba(250,204,21,0.3))' }}
+                animate={{ scale: [1, 1.02, 1], opacity: [0.85, 1, 0.85] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                Mr. Chaitanya Andhale
+              </motion.h2>
             </motion.div>
           </motion.div>
 
@@ -153,21 +170,27 @@ export const HeroSection = () => {
               variants={textVariants}
               className="flex flex-wrap gap-4 justify-center lg:justify-start"
             >
-              <a 
+              <motion.a 
                 href="#projects" 
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full transition-all duration-300 hover:bg-white/90 hover:scale-[1.02] active:scale-[0.98] shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black font-semibold rounded-full shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.9)", boxShadow: "0 0 30px rgba(255,255,255,0.4)" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 View Work <ArrowRight size={18} />
-              </a>
+              </motion.a>
               
-              <a 
+              <motion.a 
                 href="https://github.com/ChaitanyaAndhale" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 border border-white/10 bg-white/5 font-semibold rounded-full transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
+                className="inline-flex items-center gap-2 px-8 py-4 border border-white/10 bg-white/5 font-semibold rounded-full"
+                whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.2)" }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 GitHub Profile
-              </a>
+              </motion.a>
             </motion.div>
           </div>
           

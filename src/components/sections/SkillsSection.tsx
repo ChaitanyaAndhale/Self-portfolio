@@ -6,27 +6,27 @@ const skillCategories = [
   {
     title: 'Languages',
     iconColor: 'text-primary',
-    skills: ['Java', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Python'],
+    skills: ['Java', 'JavaScript', 'HTML5', 'CSS3', 'Python'],
   },
   {
     title: 'Backend & Architecture',
     iconColor: 'text-white',
-    skills: ['Spring Boot', 'Node.js', 'Express', 'NestJS', 'GraphQL', 'REST APIs'],
+    skills: ['Spring Boot', 'Node.js', 'REST APIs'],
   },
   {
     title: 'Frontend & Mobile',
     iconColor: 'text-primary',
-    skills: ['React', 'Next.js', 'Redux', 'Tailwind CSS', 'Framer Motion', 'Android', 'Kotlin'],
+    skills: ['React', 'Next.js', 'Tailwind CSS'],
   },
   {
     title: 'Databases',
     iconColor: 'text-white',
-    skills: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis', 'Supabase'],
+    skills: ['MySQL', 'MongoDB', 'Supabase'],
   },
   {
     title: 'Tools & DevOps',
     iconColor: 'text-primary',
-    skills: ['Git', 'Docker', 'AWS', 'Vercel', 'Render', 'CI/CD', 'Postman'],
+    skills: ['Git', 'Vercel', 'Render', 'CI/CD', 'Postman'],
   },
 ];
 

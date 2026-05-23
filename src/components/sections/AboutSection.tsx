@@ -77,9 +77,11 @@ export const AboutSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.2 + (i * 0.1), duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="premium-card p-8 rounded-3xl group"
+                whileHover={{ scale: 1.03, y: -5, transition: { type: "spring", stiffness: 300, damping: 20 } }}
+                whileTap={{ scale: 0.98 }}
+                className="premium-card p-8 rounded-3xl group cursor-pointer"
               >
-                <div className={`w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 transition-transform duration-300 border border-white/10 ${service.color}`}>
+                <div className={`w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center mb-6 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3 border border-white/10 ${service.color}`}>
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-display font-bold text-white mb-3 transition-all duration-300">
